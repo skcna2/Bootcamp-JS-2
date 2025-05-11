@@ -1,35 +1,63 @@
-IMPORTANTE: El repositorio debe contener un archivo README.md con la descripción de lo qué se ha realizado en el laboratorio, si quieres puedes añadir capturas de pantalla para explicar cómo has realizado el laboratorio.
+# LAB GIT 1
 
-Requisitos
-Tener instalado Git en tu computadora.
-Tener una cuenta en GitHub.
-Objetivos
+## 1. Crear un repositorio en local
 
-1. Crear un repositorio en local
+1. Abro Gitbash
+2. Creo nuevo directorio para el repositorio: `mkdir prueba`
+3. `cd prueba`
+4. `git init`
 
-Abre tu terminal y navega hasta el directorio donde deseas crear el repositorio.
-Crea una carpeta con el nombre del repositorio.
-Ingresa a la carpeta que acabas de crear.
-Inicializa el repositorio de Git. 2. Subir el repositorio a GitHub
+## 2. Subir el repositorio a GitHub
 
-Crea un nuevo repositorio en GitHub.
-Copia el URL del repositorio que acabas de crear en GitHub
-Conecta tu repositorio local con el repositorio en GitHub.
-Verifica que la conexión se haya establecido correctamente. 3. Hacer un commit y un push
+1. Creo repositorio público con nombre "prueba", el resto por defecto. Copio URL:  
+   `https://github.com/skcna2/prueba.git`
+2. Enlazo local con repositorio remoto:  
+   `git remote add origin https://github.com/skcna2/prueba.git`  
+   Compruebo que se agregó:  
+   `git remote -v`
 
-Crea un archivo en la carpeta del repositorio.
-Añade el archivo al staging.
-Crea un commit con un mensaje descriptivo.
-Sube los cambios al repositorio en GitHub. 4. Crear una rama
+## 3. Hacer un commit y un Push
 
-Crea una rama nueva llamada "development".
-Cambia a la nueva rama.
-Realiza algunos cambios en el archivo que creaste.
-Añade y haz un commit con los cambios en la rama "development".
-Sube los cambios a Github. 5. Hacer un merge
+1. Creo y subo archivo README.md:  
+   `touch README.md`  
+   `git add README.md`  
+   `git commit -m "primer commit"`  
+   `git branch -M main`  
+   `git push -u origin main`
+2. Creo fichero y agrego a Stagging:  
+   `touch stagging.html`  
+   `git add stagging.html`  
+   Compruebo que el fichero está en staging:  
+   `git status`  
+   Confirmo cambios:  
+   `git commit -m "subida html"`  
+   Subo cambios:  
+   `git push`
 
-Vuelve a la rama "main".
-Haz un merge de la rama "development" a la rama "main".
-Si no hay conflictos, los cambios realizados en la rama "development" se incorporarán a la rama "main".
-Hax un push de los cambios al repositorio en GitHub.
-La rama principal de nuestro repositorio puede ser "main" o "master" según la hayamos nombrado.
+## 4. Crear una rama
+
+1. Crea una rama nueva llamada "development":  
+   `git branch development`
+2. Cambia a la nueva rama:  
+   `git switch development`
+3. Realiza algunos cambios en los archivos
+   ok
+4. Añade y haz commit con los cambios:  
+   `git add .`  
+   `git commit -m "Cambios final"`
+5. Sube los cambios a GitHub:  
+   `git push -u origin development`  
+   _(El parámetro `-u` hace que git recuerde la rama)_
+
+## 5. Hacer un merge
+
+1. Vuelve a la rama principal:  
+   `git switch main`  
+   `git pull origin main` _(Traigo los últimos cambios por si acaso)_
+2. Haz merge de la rama "development" a "main":  
+   `git merge development`
+3. Si no hay conflictos, los cambios se incorporarán a "main"
+4. Sube los cambios a GitHub:  
+   `git push origin main`
+
+**Nota:** La rama principal puede llamarse "main" o "master" según cómo se haya configurado el repositorio.
