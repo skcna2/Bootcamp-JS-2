@@ -20,12 +20,13 @@ h2::first-letter {
 }
 
 .container {
-  border: red solid;
+  
 }
 
 .colecciones {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  
   gap: 32px;
   padding-bottom: 32px;
   max-width: 1200px;
