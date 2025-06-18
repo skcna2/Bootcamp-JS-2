@@ -1,6 +1,6 @@
 // grupo musical
 
-//Corregir - Para el género musical podrías haber usado un enumerado, añadiendo el icono en cada género.
+///Corregir - Para el género musical podrías haber usado un enumerado, añadiendo el icono en cada género.
 //Las variables de cada grupo (grupo1, grupo2, etc.) deberían ser const y no let. Si una variable no cambia, como es el caso, siempre es preferible usar const.
 //Por consola había que mostrar todos los datos del grupo, no solo el nombre.
 //Te animo a volver a subir la entrega con los cambios que te menciono.
