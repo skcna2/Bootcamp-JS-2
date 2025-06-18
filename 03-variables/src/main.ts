@@ -1,5 +1,10 @@
 // grupo musical
 
+//Corregir - Para el género musical podrías haber usado un enumerado, añadiendo el icono en cada género.
+//Las variables de cada grupo (grupo1, grupo2, etc.) deberían ser const y no let. Si una variable no cambia, como es el caso, siempre es preferible usar const.
+//Por consola había que mostrar todos los datos del grupo, no solo el nombre.
+//Te animo a volver a subir la entrega con los cambios que te menciono.
+
 interface GrupoMusical {
   nombre: string;
   anoFundacion: number;
@@ -7,35 +12,35 @@ interface GrupoMusical {
   genero: string;
 }
 
-let grupo1: GrupoMusical = {
+const grupo1: GrupoMusical = {
   nombre: "The beatles",
   anoFundacion: 1960,
   activo: true,
   genero: "musical",
 };
 
-let grupo2: GrupoMusical = {
+const grupo2: GrupoMusical = {
   nombre: "Queen",
   anoFundacion: 1970,
   activo: false,
   genero: "Rock",
 };
 
-let grupo3: GrupoMusical = {
+const grupo3: GrupoMusical = {
   nombre: "AC DC",
   anoFundacion: 1973,
   activo: true,
   genero: "Hard Rock",
 };
 
-let grupo4: GrupoMusical = {
+const grupo4: GrupoMusical = {
   nombre: "Ludwig van Beethoven",
   anoFundacion: 1770,
   activo: false,
   genero: "Clasica",
 };
 
-let grupo5: GrupoMusical = {
+const grupo5: GrupoMusical = {
   nombre: "The Rolling Stones",
   anoFundacion: 1962,
   activo: false,
