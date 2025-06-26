@@ -44,10 +44,6 @@ nav ul {
   list-style: none;
 }
 
-nav ul li {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
 /* ========== 5. COLECCIONES ========== */
 .colecciones {
   display: grid;
@@ -102,12 +98,11 @@ footer {
   gap: 8px;
   padding: 8px;
   font-size: 16px;
-  transition: all 0.3s ease;
 }
 
 /* ========== 7. MEDIA QUERIES ========== */
 
-/* 7.1 Diseño adaptable hasta 920px */
+/* Diseño adaptable hasta 920px */
 @media (max-width: 920px) {
   nav ul li:not(:first-child) {
     display: none;
@@ -133,21 +128,21 @@ footer {
   }
 }
 
-/* 7.2 Grid de 1 columna para móviles (hasta 575px) */
+/* Grid de 1 columna móviles (hasta 575px) */
 @media (max-width: 575px) {
   .colecciones {
     grid-template-columns: 1fr;
   }
 }
 
-/* 7.3 Grid de 2 columnas para tablets (576px - 991px) */
+/* Grid de 2 columnas tablets (576px - 991px) */
 @media (min-width: 576px) and (max-width: 991px) {
   .colecciones {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 7.4 Grid de 3 columnas para pantallas grandes (992px en adelante) */
+/* Grid de 3 columnas pantallas grandes (992px en adelante) */
 @media (min-width: 992px) {
   .colecciones {
     grid-template-columns: repeat(3, 1fr);
