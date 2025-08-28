@@ -10,9 +10,7 @@ let juegoTerminado: boolean = false;
 
 // Muestra la puntuación o mensaje en el div correspondiente
 const muestraPuntuacion = (resultado: number | string): void => {
-  const puntuacionElemento = document.getElementById(
-    "puntuacion"
-  ) as HTMLDivElement;
+  const puntuacionElemento = document.getElementById("puntuacion") as HTMLDivElement;
 
   if (puntuacionElemento) {
     puntuacionElemento.innerHTML = resultado.toString();
@@ -48,42 +46,48 @@ const comprobarPuntuacion = (puntuacion: number[]): number => {
     return total;
   }, 0);
 
-  muestraPuntuacion(`El total es: ${resultado}`);
+  muestraPuntuacion(`El total es: ${resultado}`); // se muestra siempre que se coge una carta mientras el juego no hyaya terminado
 
-  // Si se pasa de 7.5, fin del juego
-  if (resultado > 7.5) {
-    muestraPuntuacion(`GAME OVER, el total es: ${resultado}`);
-    //alert(`GAME OVER, el total es: ${resultado}`);
-    puntuacion.length = 0; // Vaciar puntuación
+  if (resultado === 7.5) {
     juegoTerminado = true;
+    mostrarMensajeFinal(resultado);
+    puntuacion.length = 0; // Vaciar puntuación
+
     ocultarBtn(btnDarCarta);
     ocultarBtn(plantarse);
     mostrarBtn(reiniciar); // Mostrar botón de reinicio
   }
+  // Si se pasa de 7.5, fin del juego
+  else if (resultado > 7.5) {
+    juegoTerminado = true;
+    mostrarMensajeFinal(resultado);
+    puntuacion.length = 0; // Vaciar puntuación
+
+    ocultarBtn(btnDarCarta);
+    ocultarBtn(plantarse);
+    mostrarBtn(reiniciar); // Mostrar botón de reinicio
+  }
+  //alert(`GAME OVER, el total es: ${resultado}`);
 
   return resultado;
 };
 
 //Mostrar mensaje Final
-const mostrarMensajeFinal = (resultado: number): void => {
+function mostrarMensajeFinal(resultado: number): void {
   if (juegoTerminado) {
     if (resultado < 4) {
-      muestraPuntuacion(
-        `"Has sido muy conservador", el total es: ${resultado}`
-      );
+      muestraPuntuacion(`"Has sido muy conservador", el total es: ${resultado}`);
     } else if (resultado === 5) {
-      muestraPuntuacion(
-        `"Te ha entrado el cangelo eh?", el total es: ${resultado}`
-      );
+      muestraPuntuacion(`"Te ha entrado el cangelo eh?", el total es: ${resultado}`);
     } else if (resultado >= 6 && resultado < 7.5) {
       muestraPuntuacion(`"Casi casi...", el total es: ${resultado}`);
     } else if (resultado === 7.5) {
-      muestraPuntuacion(
-        `"¡Lo has clavado! ¡Enhorabuena!", el total es: ${resultado}`
-      );
+      muestraPuntuacion(`"¡Lo has clavado! ¡Enhorabuena!", el total es: ${resultado}`);
+    } else if (resultado > 7.5) {
+      muestraPuntuacion(`GAME OVER, el total es: ${resultado}`);
     }
   }
-};
+}
 
 //Mostrar Botones
 const mostrarBtn = (boton: HTMLButtonElement): void => {
@@ -97,14 +101,11 @@ const ocultarBtn = (boton: HTMLButtonElement): void => {
 
 // Muestra la imagen correspondiente a la carta
 const mostrarCarta = (carta: number): void => {
-  let divMostrarCarta = document.getElementById(
-    "img-carta-arriba"
-  ) as HTMLImageElement;
+  let divMostrarCarta = document.getElementById("img-carta-arriba") as HTMLImageElement;
   if (divMostrarCarta !== null && divMostrarCarta !== undefined) {
     switch (carta) {
       case 0:
-        divMostrarCarta.src =
-          "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
+        divMostrarCarta.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
         break;
       case 1:
         divMostrarCarta.src =
