@@ -73,6 +73,13 @@ const comprobarPuntuacion = (puntuacion: number[]): number => {
   return resultado;
 };
 
+const queHubieraPasado = (resultado: number): void => {
+  let total = resultado;
+  for (let i = 0; i < cartasInicio.length; i++) {
+    const carta = cartasInicio[i++];
+  }
+};
+
 //Mostrar mensaje Final
 function mostrarMensajeFinal(resultado: number): void {
   if (juegoTerminado) {
@@ -175,6 +182,11 @@ plantarse.addEventListener("click", () => {
   juegoTerminado = true;
   const resultado: number = comprobarPuntuacion(puntuacion);
   mostrarMensajeFinal(resultado);
+
+  if (resultado < 7.5) {
+    queHubieraPasado(resultado);
+  }
+
   mostrarBtn(reiniciar); //Mostrar boton reinicio
   ocultarBtn(plantarse); // Ocultar botón de Plantarse
   ocultarBtn(btnDarCarta); // Ocultar botón Dar carta
