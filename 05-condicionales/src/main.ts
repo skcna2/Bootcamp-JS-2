@@ -1,12 +1,19 @@
 //El Juego del 7 y 1/2
 
-//TODO-FALTA poner bonito con CSS
-
+//Cartas inicales
+let cartasInicio: number[] = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12];
 // Array para almacenar las cartas sacadas por el jugador
 let puntuacion: number[] = [];
 
 // Variable para controlar si el juego ha terminado
 let juegoTerminado: boolean = false;
+
+const barajar = () => {
+  for (let i = cartasInicio.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cartasInicio[i], cartasInicio[j]] = [cartasInicio[j], cartasInicio[i]]; //intercambiar
+  }
+};
 
 // Muestra la puntuación o mensaje en el div correspondiente
 const muestraPuntuacion = (resultado: number | string): void => {
@@ -16,22 +23,25 @@ const muestraPuntuacion = (resultado: number | string): void => {
     puntuacionElemento.innerHTML = resultado.toString();
   }
 };
-
+//barajamos
+barajar();
 // Función que da una carta aleatoria y la añade a la puntuación
 const dameCarta = (): void => {
   if (juegoTerminado) {
     return;
   } // No hace nada si el juego ya termino
 
-  let numRandom: number = Math.floor(Math.random() * 10) + 1;
+  const cartaSacada = cartasInicio.pop();
 
-  // Si el número es mayor que 7, lo convertimos en 10, 11 o 12
-  if (numRandom && numRandom > 7) {
-    numRandom += 2;
+  if (cartaSacada === undefined) {
+    juegoTerminado = true;
+    return;
   }
 
-  puntuacion.push(numRandom); // Guardamos la carta
-  mostrarCarta(numRandom); // Mostramos la imagen de la carta
+  let cartaRandom: number = cartaSacada;
+
+  puntuacion.push(cartaRandom); // Guardamos la carta
+  mostrarCarta(cartaRandom); // Mostramos la imagen de la carta
   comprobarPuntuacion(puntuacion); // Calculamos el nuevo total
 };
 
@@ -46,9 +56,9 @@ const comprobarPuntuacion = (puntuacion: number[]): number => {
     return total;
   }, 0);
 
-  muestraPuntuacion(`El total es: ${resultado}`); // se muestra siempre que se coge una carta mientras el juego no hyaya terminado
+  muestraPuntuacion(`El total es: ${resultado}`); // se muestra siempre que se coge una carta mientras el juego no haya terminado
 
-  if (resultado === 7.5) {
+  if (resultado === 7.5 || resultado > 7.5) {
     juegoTerminado = true;
     mostrarMensajeFinal(resultado);
     puntuacion.length = 0; // Vaciar puntuación
@@ -57,16 +67,7 @@ const comprobarPuntuacion = (puntuacion: number[]): number => {
     ocultarBtn(plantarse);
     mostrarBtn(reiniciar); // Mostrar botón de reinicio
   }
-  // Si se pasa de 7.5, fin del juego
-  else if (resultado > 7.5) {
-    juegoTerminado = true;
-    mostrarMensajeFinal(resultado);
-    puntuacion.length = 0; // Vaciar puntuación
 
-    ocultarBtn(btnDarCarta);
-    ocultarBtn(plantarse);
-    mostrarBtn(reiniciar); // Mostrar botón de reinicio
-  }
   //alert(`GAME OVER, el total es: ${resultado}`);
 
   return resultado;
@@ -75,7 +76,7 @@ const comprobarPuntuacion = (puntuacion: number[]): number => {
 //Mostrar mensaje Final
 function mostrarMensajeFinal(resultado: number): void {
   if (juegoTerminado) {
-    if (resultado < 4) {
+    if (resultado <= 4) {
       muestraPuntuacion(`"Has sido muy conservador", el total es: ${resultado}`);
     } else if (resultado === 5) {
       muestraPuntuacion(`"Te ha entrado el cangelo eh?", el total es: ${resultado}`);
@@ -153,10 +154,11 @@ const mostrarCarta = (carta: number): void => {
 
 // --- BOTONES ---
 
-// Botones
+// GetElements DOM
 const reiniciar = document.getElementById("reiniciar") as HTMLButtonElement;
 const plantarse = document.getElementById("plantarse") as HTMLButtonElement;
 const btnDarCarta = document.getElementById("dame-carta") as HTMLButtonElement;
+const labelPasado = document.getElementById("label-pasado") as HTMLLabelElement;
 
 // Botón "Dame carta"
 btnDarCarta.addEventListener("click", () => {
@@ -181,6 +183,8 @@ plantarse.addEventListener("click", () => {
 // Botón "Nueva Partida"
 reiniciar.addEventListener("click", () => {
   juegoTerminado = false;
+  cartasInicio = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]; // restaurar mazo
+  barajar(); // barajar de nuevo
   mostrarCarta(0); // Mostrar dorso
   puntuacion.length = 0; // Vaciar puntuación
   muestraPuntuacion("Coge una Carta"); // Limpiar texto de resultado
