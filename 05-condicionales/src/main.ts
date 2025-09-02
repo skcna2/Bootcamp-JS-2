@@ -75,8 +75,24 @@ const comprobarPuntuacion = (puntuacion: number[]): number => {
 
 const queHubieraPasado = (resultado: number): void => {
   let total = resultado;
-  for (let i = 0; i < cartasInicio.length; i++) {
-    const carta = cartasInicio[i++];
+  let cartas: number[] = [];
+
+  while (cartasInicio.length > 0 && total < 7.5) {
+    const carta = cartasInicio.pop()!;
+    cartas.push(carta);
+
+    // calcular valor de la carta
+    const valor = carta >= 1 && carta <= 7 ? carta : 0.5;
+    total += valor;
+
+    // Comprobar si se alcanza o supera 7.5
+    if (total === 7.5) {
+      muestraPuntuacion(`Habrías Ganado, las siguientes cartas eran: ${cartas.join(", ")}`);
+      break;
+    } else if (total > 7.5) {
+      muestraPuntuacion(`Te habrías pasado, las siguientes cartas eran: ${cartas.join(", ")}`);
+      break;
+    }
   }
 };
 
