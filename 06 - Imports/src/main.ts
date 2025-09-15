@@ -1,0 +1,48 @@
+import { barajar, isJuegoTerminado, puntuacion, resetCartasInicio, setJuegoTerminado } from "./modelo";
+import { comprobarPuntuacion, dameCarta } from "./motor";
+import { muestraPuntuacion, mostrarBtn, ocultarBtn, mostrarCarta, mostrarMensajeFinal, getBotones } from "./ui";
+//El Juego del 7 y 1/2
+
+// Traemos los botones
+const { reiniciar, plantarse, btnDarCarta, btnPasado } = getBotones();
+//barajamos
+barajar();
+// Función que da una carta aleatoria y la añade a la puntuación
+
+// Botón "Dame carta"
+btnDarCarta.addEventListener("click", () => {
+  mostrarBtn(plantarse);
+  dameCarta();
+});
+
+// Botón "Plantarse"
+plantarse.addEventListener("click", () => {
+  if (isJuegoTerminado()) {
+    return;
+  }
+
+  setJuegoTerminado(true);
+  const resultado: number = comprobarPuntuacion(puntuacion);
+  mostrarMensajeFinal(resultado);
+  mostrarBtn(btnPasado);
+  mostrarBtn(reiniciar); //Mostrar boton reinicio
+  ocultarBtn(plantarse); // Ocultar botón de Plantarse
+  ocultarBtn(btnDarCarta); // Ocultar botón Dar carta
+});
+
+// Botón "Hubiera pasado"Plantarse
+btnPasado.addEventListener("click", () => {});
+
+// Botón "Nueva Partida"
+reiniciar.addEventListener("click", () => {
+  setJuegoTerminado(false);
+  resetCartasInicio(); // restaurar mazo
+  barajar(); // barajar de nuevo
+  mostrarCarta(0); // Mostrar dorso
+  puntuacion.length = 0; // Vaciar puntuación
+  muestraPuntuacion("Coge una Carta"); // Limpiar texto de resultado
+  mostrarBtn(btnDarCarta); // mostrar botón Dar carta
+  ocultarBtn(reiniciar); // Ocultar botón de reinicio
+  ocultarBtn(plantarse); // Ocultar botón de Plantarse
+  ocultarBtn(btnPasado);
+});
