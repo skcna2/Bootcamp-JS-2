@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>El Juego del 7 y 1/2</h1>
+      <div>
+        <img
+          src="https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
+          alt="carta-boca-abajo"
+        /><br />
+        <img
+          src="https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg"
+          alt="carta-boca-arriba"
+          id="img-carta-arriba"
+        /><br />
+        <div id="puntuacion">Puntuacion</div>
+        <br />
+        <div id="botones">
+        <button id="dame-carta" style="display: block;">Dame Carta</button>
+        <button id="plantarse" style="display: none;">Plantarse</button>
+        <button id="reiniciar" style="display: none">Nueva Partida</button></div>
+        
+        <br />
+        <div id="que-hubiera-pasado">
+          <button id="btn-pasado" style="display: none;">Que hubiera pasado</button>
+        </div>
+
+    </div>
+
+    <script type="module" src="src/main.ts"></script>
+  </body>
+</html>
