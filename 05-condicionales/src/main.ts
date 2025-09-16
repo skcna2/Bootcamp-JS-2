@@ -199,15 +199,12 @@ plantarse.addEventListener("click", () => {
   juegoTerminado = true;
   const resultado: number = comprobarPuntuacion(puntuacion);
   mostrarMensajeFinal(resultado);
-<<<<<<< HEAD
   mostrarBtn(btnPasado);
-=======
 
   if (resultado < 7.5) {
     queHubieraPasado(resultado);
   }
 
->>>>>>> dev
   mostrarBtn(reiniciar); //Mostrar boton reinicio
   ocultarBtn(plantarse); // Ocultar botón de Plantarse
   ocultarBtn(btnDarCarta); // Ocultar botón Dar carta

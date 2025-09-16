@@ -1,5 +1,5 @@
 import { barajar, isJuegoTerminado, puntuacion, resetCartasInicio, setJuegoTerminado } from "./modelo";
-import { comprobarPuntuacion, dameCarta } from "./motor";
+import { comprobarPuntuacion, dameCarta, queHubieraPasado } from "./motor";
 import { muestraPuntuacion, mostrarBtn, ocultarBtn, mostrarCarta, mostrarMensajeFinal, getBotones } from "./ui";
 //El Juego del 7 y 1/2
 
@@ -30,7 +30,11 @@ plantarse.addEventListener("click", () => {
 });
 
 // Botón "Hubiera pasado"Plantarse
-btnPasado.addEventListener("click", () => {});
+btnPasado.addEventListener("click", () => {
+  const resultado: number = comprobarPuntuacion(puntuacion);
+  queHubieraPasado(resultado);
+  ocultarBtn(btnPasado);
+});
 
 // Botón "Nueva Partida"
 reiniciar.addEventListener("click", () => {
