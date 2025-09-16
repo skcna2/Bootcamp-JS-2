@@ -6,14 +6,12 @@ export const dameCarta = (): void => {
     return;
   } // No hace nada si el juego ya termino
 
-  const cartaSacada = cartasInicio.pop();
+  const cartaRandom = cartasInicio.pop();
 
-  if (cartaSacada === undefined) {
+  if (cartaRandom === undefined) {
     setJuegoTerminado(true);
     return;
   }
-
-  let cartaRandom: number = cartaSacada;
 
   puntuacion.push(cartaRandom); // Guardamos la carta
   mostrarCarta(cartaRandom); // Mostramos la imagen de la carta
@@ -32,10 +30,9 @@ export const comprobarPuntuacion = (puntuacion: number[]): number => {
     mostrarMensajeFinal(resultado);
 
     // Ocultar/mostrar botones
-    const { btnDarCarta, plantarse, btnPasado, reiniciar } = getBotones();
+    const { btnDarCarta, plantarse, reiniciar } = getBotones();
     ocultarBtn(btnDarCarta);
     ocultarBtn(plantarse);
-    mostrarBtn(btnPasado);
     mostrarBtn(reiniciar);
   }
 

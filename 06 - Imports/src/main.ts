@@ -7,7 +7,6 @@ import { muestraPuntuacion, mostrarBtn, ocultarBtn, mostrarCarta, mostrarMensaje
 const { reiniciar, plantarse, btnDarCarta, btnPasado } = getBotones();
 //barajamos
 barajar();
-// Función que da una carta aleatoria y la añade a la puntuación
 
 // Botón "Dame carta"
 btnDarCarta.addEventListener("click", () => {
