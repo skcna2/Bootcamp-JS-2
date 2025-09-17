@@ -1,21 +1,21 @@
-import { calcularPuntuacion, cartasInicio, isJuegoTerminado, puntuacion, setJuegoTerminado } from "./modelo";
+import { calcularPuntuacion, estadoPartida } from "./modelo";
 import { getBotones, mostrarBtn, mostrarCarta, mostrarMensajeFinal, muestraPuntuacion, ocultarBtn } from "./ui";
 
 export const dameCarta = (): void => {
-  if (isJuegoTerminado()) {
+  if (estadoPartida.isJuegoTerminado()) {
     return;
   } // No hace nada si el juego ya termino
 
-  const cartaRandom = cartasInicio.pop();
+  const cartaRandom = estadoPartida.cartasInicio.pop();
 
   if (cartaRandom === undefined) {
-    setJuegoTerminado(true);
+    estadoPartida.setJuegoTerminado(true);
     return;
   }
 
-  puntuacion.push(cartaRandom); // Guardamos la carta
+  estadoPartida.puntuacion.push(cartaRandom); // Guardamos la carta
   mostrarCarta(cartaRandom); // Mostramos la imagen de la carta
-  comprobarPuntuacion(puntuacion); // Calculamos el nuevo total
+  comprobarPuntuacion(estadoPartida.puntuacion); // Calculamos el nuevo total
 };
 
 export const comprobarPuntuacion = (puntuacion: number[]): number => {
@@ -26,7 +26,7 @@ export const comprobarPuntuacion = (puntuacion: number[]): number => {
 
   // Lógica: ver si terminó
   if (resultado >= 7.5) {
-    setJuegoTerminado(true);
+    estadoPartida.setJuegoTerminado(true);
     mostrarMensajeFinal(resultado);
 
     // Ocultar/mostrar botones
@@ -43,8 +43,8 @@ export const queHubieraPasado = (resultado: number): void => {
   let total = resultado;
   let cartas: number[] = [];
 
-  while (cartasInicio.length > 0 && total < 7.5) {
-    const carta = cartasInicio.pop()!;
+  while (estadoPartida.cartasInicio.length > 0 && total < 7.5) {
+    const carta = estadoPartida.cartasInicio.pop()!;
     cartas.push(carta);
 
     // calcular valor de la carta

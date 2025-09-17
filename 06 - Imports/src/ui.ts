@@ -1,4 +1,4 @@
-import { isJuegoTerminado } from "./modelo";
+import { estadoPartida } from "./modelo";
 
 // Muestra la puntuación o mensaje en el div correspondiente
 export const muestraPuntuacion = (resultado: number | string): void => {
@@ -72,7 +72,7 @@ export const mostrarCarta = (carta: number): void => {
 
 //Mostrar mensaje Final
 export function mostrarMensajeFinal(resultado: number): void {
-  if (isJuegoTerminado()) {
+  if (estadoPartida.isJuegoTerminado()) {
     if (resultado <= 4) {
       muestraPuntuacion(`"Has sido muy conservador", el total es: ${resultado}`);
     } else if (resultado === 5) {
