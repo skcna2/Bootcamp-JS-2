@@ -60,7 +60,6 @@ const comprobarPuntuacion = (puntuacion: number[]): number => {
 
   if (resultado === 7.5 || resultado > 7.5) {
     juegoTerminado = true;
-    mostrarBtn(btnPasado);
     mostrarMensajeFinal(resultado);
     puntuacion.length = 0; // Vaciar puntuación
 
@@ -182,7 +181,7 @@ const mostrarCarta = (carta: number): void => {
 const reiniciar = document.getElementById("reiniciar") as HTMLButtonElement;
 const plantarse = document.getElementById("plantarse") as HTMLButtonElement;
 const btnDarCarta = document.getElementById("dame-carta") as HTMLButtonElement;
-const btnPasado = document.getElementById("btn-pasado") as HTMLButtonElement;
+const labelPasado = document.getElementById("label-pasado") as HTMLLabelElement;
 
 // Botón "Dame carta"
 btnDarCarta.addEventListener("click", () => {
@@ -199,7 +198,6 @@ plantarse.addEventListener("click", () => {
   juegoTerminado = true;
   const resultado: number = comprobarPuntuacion(puntuacion);
   mostrarMensajeFinal(resultado);
-  mostrarBtn(btnPasado);
 
   if (resultado < 7.5) {
     queHubieraPasado(resultado);
@@ -209,9 +207,6 @@ plantarse.addEventListener("click", () => {
   ocultarBtn(plantarse); // Ocultar botón de Plantarse
   ocultarBtn(btnDarCarta); // Ocultar botón Dar carta
 });
-
-// Botón "Hubiera pasado"Plantarse
-btnPasado.addEventListener("click", () => {});
 
 // Botón "Nueva Partida"
 reiniciar.addEventListener("click", () => {
@@ -224,5 +219,4 @@ reiniciar.addEventListener("click", () => {
   mostrarBtn(btnDarCarta); // mostrar botón Dar carta
   ocultarBtn(reiniciar); // Ocultar botón de reinicio
   ocultarBtn(plantarse); // Ocultar botón de Plantarse
-  ocultarBtn(btnPasado);
 });
